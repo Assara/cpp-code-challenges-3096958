@@ -15,8 +15,34 @@
 // Arguments:
 //           knight: The knight's location.
 // Returns: An STL vector of strings with the possible locations to move.
+bool on_board(std::string knight) {
+    char letter = knight[0];
+    char  number = knight[1];
+    if (letter >= 'a' && letter <= 'h' ) {
+        if (number>= '1' && number <= '8'){
+            return true;
+        }
+    }
+    return false;
+}
+
 std::vector<std::string> knight_moves(std::string knight){
     std::vector<std::string> moves;
+    char letter = knight[0];
+    char number = knight[1];
+
+    for( char sign_l : {-1,1}) {
+        for(char sign_n : {-1,1}) {
+            std::string move1 = {letter+(sign_l*(char)1), number + (sign_n*(char)2)};
+            std::string move2 = {letter+(sign_l*(char)2), number + (sign_n*(char)1)};
+            if (on_board(move1)) {
+                moves.push_back(move1);
+            }
+            if (on_board(move2)) {
+                moves.push_back(move2);
+            }
+        }
+    }
 
     // Write your code here
 
