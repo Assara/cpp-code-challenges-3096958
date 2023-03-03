@@ -19,26 +19,40 @@
 //           v: A reference to the vector to analyze.
 // Returns: A boolean value: True for bitonic sequences, false otherwise.
 bool is_bitonic(const std::vector<int> &v){
-    
-    // Write your code here
+    int last_slope = 0;
+    int current_slope;
+    int slope_changes = 0;
 
-    return false;
+    int last_element = v.back();
+    for (int i : v) {
+        current_slope = i- last_element;
+        if (current_slope* last_slope < 0 ){
+            slope_changes ++;
+            if (slope_changes> 2) {
+                return false;
+            }
+        }
+        last_slope = current_slope;
+        last_element = i;
+    }
+
+    return true;
 }
 
 // Main function
 int main(){
     // Uncomment one of these lines and make sure you get the result at the right. 
     
-    std::vector<int> myvec = {1, 2, 5, 4, 3};  // Yes
+    //std::vector<int> myvec = {1, 2, 5, 4, 3};  // Yes
     // std::vector<int> myvec = {1, 1, 1, 1, 1};  // Yes
     // std::vector<int> myvec = {3, 4, 5, 2, 2};  // Yes
-    // std::vector<int> myvec = {3, 4, 5, 2, 4};  // No
-    // std::vector<int> myvec = {1, 2, 3, 4, 5};  // Yes
+     //std::vector<int> myvec = {3, 4, 5, 2, 4};  // No
+    //std::vector<int> myvec = {1, 2, 3, 4, 5};  // Yes
     // std::vector<int> myvec = {1, 2, 3, 1, 2};  // No
     // std::vector<int> myvec = {5, 4, 6, 2, 6};  // No
     // std::vector<int> myvec = {5, 4, 3, 2, 1};  // Yes
     // std::vector<int> myvec = {5, 4, 3, 2, 6};  // Yes
-    // std::vector<int> myvec = {5, 4, 6, 5, 4};  // No
+    //std::vector<int> myvec = {5, 4, 6, 5, 4};  // No
     // std::vector<int> myvec = {5, 4, 6, 5, 5};  // Yes
 
     std::cout << (is_bitonic(myvec) == true ? "Yes, it is bitonic." : "No, it is not bitonic.");
