@@ -14,6 +14,18 @@ int main(){
     
     std::cout << "Enter a positive integer: " << std::flush;
     std::cin >> n;
+    for (int i = 1; i<= n ; i++) {
+        std::cout << " ";
+        if (i%3 == 0){
+            std::cout << "Fizz";
+        }
+        if (i%5 == 0){
+            std::cout << "Buzz";
+        }else if (i%3 != 0) {
+            std::cout  << i;
+        }
+    }
+
 
     // Write your code here
     
