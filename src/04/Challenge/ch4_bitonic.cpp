@@ -31,8 +31,10 @@ bool is_bitonic(const std::vector<int> &v){
             if (slope_changes> 2) {
                 return false;
             }
+            last_slope = current_slope;
+        } else if (last_slope == 0) {
+            last_slope = current_slope;
         }
-        last_slope = current_slope;
         last_element = i;
     }
 
@@ -53,7 +55,9 @@ int main(){
     // std::vector<int> myvec = {5, 4, 3, 2, 1};  // Yes
     // std::vector<int> myvec = {5, 4, 3, 2, 6};  // Yes
     //std::vector<int> myvec = {5, 4, 6, 5, 4};  // No
-    // std::vector<int> myvec = {5, 4, 6, 5, 5};  // Yes
+     //std::vector<int> myvec = {5, 4, 6, 5, 5};  // Yes
+
+     std::vector<int> myvec = {1,1,1,1,1, 2, 2, 1, 1, -1,-1, 1, 1};  // Yes
 
     std::cout << (is_bitonic(myvec) == true ? "Yes, it is bitonic." : "No, it is not bitonic.");
     std::cout << std::endl << std::endl << std::flush;
