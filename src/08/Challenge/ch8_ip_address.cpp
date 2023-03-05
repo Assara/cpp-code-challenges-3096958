@@ -17,9 +17,41 @@
 // Returns: A boolean value. True for valid ip addresses, false otherwise.
 bool is_valid_ip(std::string ip){
 
-    // Write your code here
+    std::string::iterator dots[5];
 
-    return false;
+    dots[0] = ip.begin()-1;
+    dots[4] = ip.end();
+    int i = 0;
+    for (std::string::iterator it = ip.begin(); it < ip.end(); it++) {
+        if((*it) == '.') {
+            i++;
+            dots[i] = it;  
+            if (i>3){
+                return false;
+            }
+        } else if((*it) < '0' || (*it)> '9') {
+
+            return false;
+        }
+    }
+    // not enough dots
+    if (i < 3) {
+        return false;
+    }
+    for (int i = 0; i< 4; i++) {
+        if (dots[i]+1 == dots[i+1]) {
+            return false;
+        }
+
+        std::string s (dots[i]+1, dots[i+1]);
+        long n = std::stol(s , nullptr, 10);
+        if (n > 255) {
+
+            return false;
+        }
+    }
+    // Write your code here
+    return true;
 }
 
 // Main function
