@@ -17,7 +17,6 @@
 // Returns: An integer with the vowel count.
 int vowel_count(const std::string str){
     int count=0;
-    std::cout<< "-----------------"<< std::endl << str << std::endl;
     for(int i = 0; i<str.length(); i++)
         switch(str[i]){
             case 'a':
