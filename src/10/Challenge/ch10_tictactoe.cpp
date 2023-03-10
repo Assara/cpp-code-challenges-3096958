@@ -36,13 +36,15 @@ void ask_for_move(char game[][3], char mark){
 
 #define TWO_PLAYERS
 void make_move(char game[][3], char mark){ 
-    #ifdef TWO_PLAYERS
-    ask_for_move(game,mark);
-    #else
+    //#ifdef TWO_PLAYERS
+    //ask_for_move(game,mark);
+    //#else
     
     // Write your code here and comment out the definition of TWO_PLAYERS above
 
-    #endif
+        
+
+    //#endif
     return;
 }
 
