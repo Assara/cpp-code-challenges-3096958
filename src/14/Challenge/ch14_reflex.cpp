@@ -11,7 +11,8 @@
 #include <string>
 #include <chrono>
 #include <algorithm>
- 
+#include <thread>
+
 std::string words[10]={"CAT","RAT","BAT","CAP","BAG","RAG","RAP","BET","BEG","LET"};
 
 // The Reflex Game, main()
@@ -27,9 +28,43 @@ int main(){
 
     std::string try_again;
     std::getline(std::cin, try_again);
+    srand((unsigned)time(0)); 
     do{
+        int word, time;
+        std::string str;
 
+        time = (rand()%10000); 
+        word = (rand()%10); 
         // Write your code here
+        std::this_thread::sleep_for(std::chrono::milliseconds(time));
+
+
+        std::cout << words[word] << std::endl;
+
+
+        std::chrono::system_clock::time_point  chrono_start = std::chrono::system_clock::now();
+
+        getline(std::cin, str);
+    
+        std::chrono::system_clock::time_point chrono_end = std::chrono::system_clock::now();
+
+        std::chrono::duration<int64_t, std::nano> dur = chrono_end - chrono_start;
+        std::transform(str.begin(), str.end(), str.begin(), toupper);
+
+
+        double elapsed_seconds = (chrono_end-chrono_start).count()/1e9;
+        std::cout << "it took: "<< elapsed_seconds << "seconds" << std::endl;
+        if(elapsed_seconds > 2) {
+
+            std::cout << "to slow!"<< std::endl; 
+        } else if (str == words[word]){
+             std::cout << "well done !"<< std::endl; 
+        } else {
+            std::cout << "wrong word: " << str <<  " != " << words[word] << std::endl; 
+        }
+
+        
+       
 
         std::cout << "Try again? (Y/N): " << std::flush;
         std::getline(std::cin, try_again);

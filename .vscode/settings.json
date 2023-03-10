@@ -75,6 +75,8 @@
     "streambuf": "cpp",
     "typeinfo": "cpp",
     "cstring": "cpp",
-    "map": "cpp"
+    "map": "cpp",
+    "thread": "cpp",
+    "stop_token": "cpp"
   }
 }
